@@ -9,7 +9,12 @@ public class TcpClient {
         
         output.write(message);
         
-        System.out.println("Mesaj gönderildi: " + String.format("%02X", message[0]));
+        // Print sent message in hex format
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : message) {
+            hexString.append(String.format("%02X ", b));
+        }
+        System.out.println("Mesaj gönderildi: " + hexString.toString().trim());
         
         socket.close();
     }
