@@ -14,7 +14,7 @@ public class TcpClient {
         for (byte b : message) {
             hexString.append(String.format("%02X ", b));
         }
-        System.out.println("Mesaj gönderildi: " + hexString.toString().trim());
+        System.out.println("Message is sent: " + hexString.toString().trim());
         
         socket.close();
     }

@@ -6,22 +6,33 @@ public class SimulationConsole {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Simulation Console is running...");
 
-        // Take input from user
-        System.out.println("Enter the message in decimal format (e.g., 1 2 3):");
-        try {
-            String messageInput = scanner.nextLine();
-            byte[] message = parseByteArray(messageInput);
-
-            TCP.TcpClient client = new TCP.TcpClient();
-            client.sendMessage("127.0.0.1", 8888, message);
-        } catch (Exception e) {
-            e.printStackTrace();
+        while (true) {
+            System.out.println("Enter the message in decimal format (e.g., 1 2 3, or 'exit' to quit):");
+            
+            try {
+                // Read user input
+                String messageInput = scanner.nextLine();
+                
+                // Exit condition
+                if (messageInput.equalsIgnoreCase("exit")) {
+                    System.out.println("Exiting...");
+                    break;
+                }
+                
+                byte[] message = parseByteArray(messageInput);
+                TCP.TcpClient client = new TCP.TcpClient();
+                client.sendMessage("127.0.0.1", 8888, message);
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        scanner.close();
+        
+        scanner.close();  // Close scanner when exit the loop
     }
     /**
      * Parses a string of space-separated decimal values into a byte array
-     */
+     **/
     public static byte[] parseByteArray(String s) {
         String[] parts = s.trim().split("\\s+");
         byte[] data = new byte[parts.length];
