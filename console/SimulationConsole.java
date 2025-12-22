@@ -20,8 +20,8 @@ public class SimulationConsole {
                 }
                 
                 byte[] message = parseByteArray(messageInput);
-                TCP.TcpClient client = new TCP.TcpClient();
-                client.sendMessage("127.0.0.1", 8888, message);
+                TCP.TcpUtils utils = new TCP.TcpUtils();
+                utils.sendMessage("127.0.0.1", 8888, message);
                 
             } catch (Exception e) {
                 e.printStackTrace();
