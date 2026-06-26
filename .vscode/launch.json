@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "TcpServer",
+            "request": "launch",
+            "mainClass": "TCP.TcpServer"
+        },
+        {
+            "type": "java",
+            "name": "SimulationConsole",
+            "request": "launch",
+            "mainClass": "console.SimulationConsole",
+            "console": "integratedTerminal"
+        }
+    ]
+}

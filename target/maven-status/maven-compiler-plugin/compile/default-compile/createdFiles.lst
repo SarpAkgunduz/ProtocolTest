@@ -1,4 +1,5 @@
 TCP\TcpUtils.class
 console\SimulationConsole.class
 TCP\TcpServer.class
+handlers\MessageHandler.class
 TCP\TcpClient.class
