@@ -114,14 +114,12 @@ public class TcpServer {
             /*
              * 9) CLIENT'A CEVAP GÖNDERME
              *
-             * Server, client'a tek byte'lık cevap gönderir.
+             * Server, mesajı aldığını bildirmek için "RECEIVED" string'ini gönderir.
              *
-             * 0x01 hexadecimal olarak 1 değeridir.
-             * Yani cevap byte array'i şu an tek elemanlıdır:
-             *
-             * response[0] = 1
+             * getBytes(), string'i byte dizisine çevirir.
+             * Client tarafında bu byte dizisi tekrar string'e çevrilerek ekrana yazdırılır.
              */
-            byte[] response = new byte[] { 0x01 };
+            byte[] response = "RECEIVED".getBytes();
             output.write(response);
 
             /*

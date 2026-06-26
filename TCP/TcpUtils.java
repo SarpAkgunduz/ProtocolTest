@@ -73,33 +73,26 @@ public class TcpUtils {
         /*
          * 5) SERVER'DAN GELEN CEVABI OKUMA
          *
-         * input.read(), server'dan gelen tek bir byte'ı okur
-         * ve onu int olarak döner (0-255 arası).
+         * input.read(responseBuffer), server'dan gelen veriyi buffer'a yazar
+         * ve kaç byte okunduğunu döner.
          *
          * Server cevap gönderene kadar burada bekler (blocking).
          *
-         * Örnek:
-         * Server 0x01 gönderdiyse:
-         * response = 1
-         */
-        int response = input.read();
-
-        /*
-         * 6) SERVER CEVABINI YAZDIRMA
-         *
-         * Gelen cevap hem decimal hem hex formatında gösterilir.
+         * new String(responseBuffer, 0, bytesRead):
+         * Sadece okunan byte kadarını string'e çevirir.
+         * bytesRead kullanmazsak buffer'daki boş alanlar da stringe dahil olur.
          *
          * Örnek:
-         * response = 1
-         * çıktı:
-         * Server response decimal: 1
-         * Server response hex: 0x01
+         * Server "RECEIVED" gönderdiyse:
+         * response = "RECEIVED"
          */
-        System.out.println("Server response decimal: " + response);
-        System.out.println("Server response hex: 0x" + String.format("%02X", response));
+        byte[] responseBuffer = new byte[1024];
+        int bytesRead = input.read(responseBuffer);
+        String response = new String(responseBuffer, 0, bytesRead);
+        System.out.println("Server response: " + response);
 
         /*
-         * 7) BAĞLANTIYI KAPATMA
+         * 6) BAĞLANTIYI KAPATMA
          *
          * İş bitince socket kapatılır.
          * Bu, her iki taraftaki stream'leri de kapatır.
